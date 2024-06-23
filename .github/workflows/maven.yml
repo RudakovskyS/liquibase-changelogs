@@ -2,14 +2,14 @@ name: Liquibase update
 
 on:
   push:
-    branches: [ "master" ]
-  # pull_request:
-    # branches: [ "master" ]
+  pull_request:
+     branches: [ "master" ]
 
 jobs:
   liquibase_dryrun:
 
     runs-on: ubuntu-latest
+    if: true
 
     defaults:
       run:
@@ -28,6 +28,7 @@ jobs:
 
   liquibase_update:
     needs: liquibase_dryrun
+    if: ${{ github.event_name != 'pull_request' && github.ref_name == 'master' }}
     runs-on: ubuntu-latest
 
     defaults:
