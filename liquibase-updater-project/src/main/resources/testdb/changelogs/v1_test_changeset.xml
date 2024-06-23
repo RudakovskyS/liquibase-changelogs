@@ -7,5 +7,10 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
-    <include file="changelogs/v1_test_changeset.xml" relativeToChangelogFile="true"/>
+    <changeSet id="v1_srudakovsky_20240623" author="srudakovsky">
+        <createTable tableName="testtable">
+            <column name="col_a" type="text"/>
+            <column name="col_b" type="boolean" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>

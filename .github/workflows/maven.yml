@@ -11,6 +11,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./liquibase-updater-project
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -20,4 +24,23 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn liquibase:updateSQL -DDBNAME=postgres -DDB_URL=localhost -DDBUSER=postgres -DDBPASSWORD=password
+      run: mvn liquibase:updateSQL -DDBNAME=${{ vars.DB_NAME }} -DDB_HOST=${{ secrets.DB_HOST }} -DDBUSER=${{ secrets.DB_USER }} -DDBPASSWORD=${{ secrets.DB_PASSWORD }}
+
+  liquibase_update:
+    needs: liquibase_dryrun
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./liquibase-updater-project
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn liquibase:update -DDBNAME=${{ vars.DB_NAME }} -DDB_HOST=${{ secrets.DB_HOST }} -DDBUSER=${{ secrets.DB_USER }} -DDBPASSWORD=${{ secrets.DB_PASSWORD }}

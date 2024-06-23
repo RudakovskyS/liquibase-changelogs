@@ -21,7 +21,7 @@
             <version>4.28.0</version>
             <configuration>
                 <changeLogFile>src/main/resources/${DBNAME}/changelog.xml</changeLogFile>
-                <url>jdbc:postgresql://${DB_URL}:5432/${DBNAME}</url>
+                <url>jdbc:postgresql://${DB_HOST}:5432/${DBNAME}</url>
                 <username>${DBUSER}</username>
                 <password>${DBPASSWORD}</password>
             </configuration>
