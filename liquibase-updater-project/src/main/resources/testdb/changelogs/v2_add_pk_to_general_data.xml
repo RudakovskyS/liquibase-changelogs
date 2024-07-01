@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+    <changeSet id="v2.1_srudakovsky_20240701" author="srudakovsky">
+        <preConditions onFailMessage="Table general_user_data doesn't exists" onFail="HALT">
+                <tableExists tableName="general_user_data"/>
+        </preConditions>
+        <comment>Add pk to general_user_data table</comment>
+        <addColumn tableName="general_user_data">
+            <column name="user_id"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="v2.2_srudakovsky_20240701" author="srudakovsky">
+        <addPrimaryKey tableName="general_user_data" columnNames="user_id"/>
+    </changeSet>
+
+</databaseChangeLog>
