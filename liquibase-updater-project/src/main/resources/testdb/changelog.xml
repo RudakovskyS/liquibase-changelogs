@@ -8,4 +8,5 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
     <include file="changelogs/v1_create_user_table_changeset.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/v2_add_pk_to_general_data.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

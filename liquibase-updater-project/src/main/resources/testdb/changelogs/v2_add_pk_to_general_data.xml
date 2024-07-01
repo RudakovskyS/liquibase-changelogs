@@ -13,7 +13,7 @@
         </preConditions>
         <comment>Add pk to general_user_data table</comment>
         <addColumn tableName="general_user_data">
-            <column name="user_id"/>
+            <column name="user_id" type="int"/>
         </addColumn>
     </changeSet>
 
