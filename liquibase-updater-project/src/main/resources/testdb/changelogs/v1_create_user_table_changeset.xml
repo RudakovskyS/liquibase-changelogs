@@ -21,7 +21,7 @@
             <column name="password" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="phoneNumber" type="text">
+            <column name="phone_number" type="text">
                 <constraints nullable="true"/>
             </column>
             <column name="phone_verified" type="boolean" defaultValueBoolean="false"/>
