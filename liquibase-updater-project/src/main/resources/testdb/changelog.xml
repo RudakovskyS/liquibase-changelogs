@@ -9,4 +9,5 @@
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
     <include file="changelogs/v1_create_user_table_changeset.xml" relativeToChangelogFile="true"/>
     <include file="changelogs/v2_add_pk_to_general_data.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/v3_add_table_for_confirmation_codes.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
