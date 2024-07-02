@@ -3,8 +3,6 @@ name: Liquibase update
 on:
   push:
   workflow_dispatch:
-  pull_request:
-     branches: [ "master" ]
 
 jobs:
   liquibase_dryrun:
@@ -29,7 +27,7 @@ jobs:
 
   liquibase_update:
     needs: liquibase_dryrun
-    if: ${{ github.event_name != 'pull_request' && github.ref_name == 'master' }}
+    if: ${{ github.event_name != 'push' && github.ref_name == 'master' }}
     runs-on: ubuntu-latest
 
     defaults:
