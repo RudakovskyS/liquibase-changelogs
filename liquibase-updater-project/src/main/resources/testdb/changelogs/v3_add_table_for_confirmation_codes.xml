@@ -24,8 +24,8 @@
             <column name="code" type="text"/>
             <column name="active" type="bool" defaultValue="false"/>
             <column name="confirmed" type="bool" defaultValue="false"/>
-            <column name="ts_inserted" type="timestamp(6)" defaultValue="now()::timestamp"/>
-            <column name="ts_confirmed" type="timestamp(6)"/>
+            <column name="ts_inserted" type="timestamp(8)" defaultValue="now()::timestamp"/>
+            <column name="ts_confirmed" type="timestamp(8)"/>
         </createTable>
     </changeSet>
 
