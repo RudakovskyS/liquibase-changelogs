@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+    <changeSet id="v3.1_srudakovsky_20240702" author="srudakovsky">
+        <preConditions onFailMessage="Table confirmation_codes already exists" onFail="HALT">
+            <and>
+                <not>
+                    <tableExists tableName="confirmation_codes"/>
+                </not>
+            </and>
+        </preConditions>
+        <comment>Add pk to general_user_data table</comment>
+        <createTable tableName="confirmation_codes">
+            <column name="code_id" type="uuid"/>
+            <column name="user_id" type="uuid"/>
+            <column name="code_type" type="text"/>
+            <column name="confirmation_target" type="text"/>
+            <column name="code" type="text"/>
+            <column name="active" type="bool" defaultValue="false"/>
+            <column name="confirmed" type="bool" defaultValue="false"/>
+            <column name="ts_inserted" type="timestamp(6)" defaultValueDate="now()::timestamp"/>
+            <column name="ts_confirmed" type="timestamp(6)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="v3.2_srudakovsky_20240702" author="srudakovsky">
+        <preConditions>
+            <tableExists tableName="confirmation_codes"/>
+        </preConditions>
+        <comment>Add pk</comment>
+        <addPrimaryKey tableName="confirmation_codes" columnNames="code_id"/>
+    </changeSet>
+
+    <changeSet id="v3.3_srudakovsky_20240702" author="srudakovsky">
+        <preConditions>
+            <tableExists tableName="confirmation_codes"/>
+        </preConditions>
+        <comment>Add fk to general_user_data table</comment>
+        <addForeignKeyConstraint baseTableName="confirmation_codes" baseColumnNames="user_id"
+                                 constraintName="confirmation_code_fk" referencedTableName="general_user_data"
+                                 referencedColumnNames="user_id"/>
+    </changeSet>
+</databaseChangeLog>

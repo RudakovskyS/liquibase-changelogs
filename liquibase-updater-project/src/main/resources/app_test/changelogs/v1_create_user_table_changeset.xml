@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+    <changeSet id="v1_srudakovsky_20240623" author="srudakovsky">
+        <preConditions onFailMessage="Table general_user_data already exists" onFail="HALT">
+            <not>
+                <tableExists tableName="general_user_data"/>
+            </not>
+        </preConditions>
+        <comment>Create general_user_data table</comment>
+        <createTable tableName="general_user_data">
+            <column name="username" type="text">
+                <constraints unique="true"/>
+            </column>
+            <column name="password" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="text">
+                <constraints nullable="true"/>
+            </column>
+            <column name="phone_verified" type="boolean" defaultValueBoolean="false"/>
+            <column name="email" type="text">
+                <constraints nullable="true"/>
+            </column>
+            <column name="mail_verified" type="boolean" defaultValueBoolean="false"/>
+            <column name="preferred_auth_type" type="text"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
